@@ -2,20 +2,14 @@ source( "load-data.R" )
 
 doPlot1 <- function() {
     
-    # Conditional data loading
-    if ( is.null( rawData) ) { 
-        loadData() 
-    } else {
-        if ( debug ) print( "Using cached version of rawData..." )
-    }
+    loadData()
     
     # Open png device
-    png( filename = "plot1.png" )
+    if ( png ) png( filename = "plot1.png" )
     
     # Make plot
-    # TODO: plot is raw.  Make shiney!
-    hist( rawData$Global_active_power )
+    hist( rawData$Global_active_power, col = "red", main = "Global Active Power", xlab = "Kilowatts" )
     
     # Turn off device
-    dev.off()
+    if ( png ) dev.off()
 }
