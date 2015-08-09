@@ -3,11 +3,12 @@
 
 debug <- TRUE
 png <- TRUE
+powerData <- NULL
 
 loadData <- function() {
  
     # Conditional data loading
-    if ( is.null( rawData) ) { 
+    if ( is.null( powerData) ) { 
         
         ## get column names from top of file...   
         rawNames <- read.csv( "../data/power.txt", header = T, skip = 0, sep=";", nrows = 1, na.strings='?' )
@@ -15,23 +16,23 @@ loadData <- function() {
         if ( debug ) print( colNames )
         
         ## grab only what we need
-        rawData <<- read.table( "../data/power.txt", header = F, na.strings='?', skip = 66637, sep=";", nrows = 2880 )
+        powerData <<- read.table( "../data/power.txt", header = F, na.strings='?', skip = 66637, sep=";", nrows = 2880 )
         ## ...then substitute into table
-        names( rawData ) <<- colNames
+        names( powerData ) <<- colNames
         
         ## update data/time
-        #rawData$Date <<- dmy( rawData$Date ) ## lubridate b0rk3d
-        #rawData$Time <<- dmy( rawData$Time ) ## lubridate b0rk3d!
-        rawData$Date <<- as.Date( rawData$Date,format="%d/%m/%Y" )
+        #powerData$Date <<- dmy( powerData$Date ) ## lubridate b0rk3d
+        #powerData$Time <<- dmy( powerData$Time ) ## lubridate b0rk3d!
+        powerData$Date <<- as.Date( powerData$Date,format="%d/%m/%Y" )
         
         ## output seems verbose/redundant. Source: https://github.com/davidzafrilla/ExData_Plotting1/commit/fd21fc500dfc8558082cc03449eb8464ba62bb14
-        dateStr <- paste( as.character( rawData$Date ), as.character( rawData$Time ), sep=" " )
+        dateStr <- paste( as.character( powerData$Date ), as.character( powerData$Time ), sep=" " )
         timeStr <- strptime( dateStr, format="%Y-%m-%d %H:%M" )
-        rawData$Time <<- timeStr
+        powerData$Time <<- timeStr
         
     } else {
         
-        if ( debug ) print( "Using cached version of rawData..." )
+        if ( debug ) print( "Using cached version of powerData..." )
     }
 }
 

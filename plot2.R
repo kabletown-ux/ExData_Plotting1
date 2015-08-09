@@ -8,7 +8,7 @@ doPlot2 <- function() {
     if ( png ) png( filename = "plot2.png" )
     
     # Make plot
-    plot( rawData$Time, rawData$Global_active_power, type = "l", xlab = "", ylab = "Global Active Power (kilowatts)" )
+    plot( powerData$Time, powerData$Global_active_power, type = "l", xlab = "", ylab = "Global Active Power (kilowatts)" )
     
     # Turn off device
     if ( png ) dev.off()
