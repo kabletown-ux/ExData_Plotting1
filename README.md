@@ -1,7 +1,7 @@
 ## Instructions and Notes
 In order to avoid posting 120MB to repo, data manipulated by scripts resides outside of this project's parent directory ( "../data/power.txt" ).
 
-* load-data.R uses conditional cacheing/loading: if data has been read into memory and prep'd for use, then cached version is always used (much faster). If you want to force cache refresh, then delete "rawData" from global environment.
+* load-data.R uses conditional cacheing/loading: if data has been read into memory and prep'd for use, then cached version is always used (much faster). If you want to force cache refresh, then delete "powerData" from global environment.
 
 * load-data.R contains flag for printing graphs to screen or file.  When "png <- TRUE", output goes to file system.  Otherwise, it's printed to screen for faster debugging.
 
